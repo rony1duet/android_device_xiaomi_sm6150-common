@@ -43,25 +43,27 @@ bool supportsTorchStrengthControlExt() {
 }
 
 bool supportsSetTorchModeExt() {
-    return false;
+    return true;
 }
 
 int32_t getTorchDefaultStrengthLevelExt() {
-    return 7;
+    return 200;
 }
 
 int32_t getTorchMaxStrengthLevelExt() {
     // In our device, both LEDs has same maximum value
     // so get from one.
     auto node = kTorchLedPaths[0] + "/" + TORCH_MAX_BRIGHTNESS;
-    return get(node, 0);
+    int32_t maxVal = get(node, 0);
+    return maxVal > 1 ? maxVal : 500;
 }
 
 int32_t getTorchStrengthLevelExt() {
     // We write same value in the both LEDs,
     // so get from one.
     auto node = kTorchLedPaths[0] + "/" + TORCH_BRIGHTNESS;
-    return get(node, 0);
+    int32_t currentVal = get(node, 0);
+    return currentVal > 0 ? currentVal : getTorchDefaultStrengthLevelExt();
 }
 
 void setTorchStrengthLevelExt(int32_t torchStrength) {
