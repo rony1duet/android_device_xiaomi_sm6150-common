@@ -39,4 +39,8 @@ It allows additional grants on top of privapp-permissions-platform.xml
         <permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
     </privapp-permissions>
+
+    <privapp-permissions package="org.lineageos.settings">
+        <permission name="android.permission.DEVICE_POWER"/>
+    </privapp-permissions>
 </permissions>
